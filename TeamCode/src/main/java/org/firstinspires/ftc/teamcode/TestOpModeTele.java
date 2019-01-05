@@ -156,12 +156,12 @@ public class TestOpModeTele extends OpMode
         leftPower  = gamepad1.left_stick_y ;
         rightPower = gamepad1.right_stick_y;
         liftPower = gamepad1.right_trigger;
-        liftPower = gamepad1.left_trigger;
         // Send calculated power to wheels
         leftFrontDrive.setPower(-leftPower);
         rightFrontDrive.setPower(rightPower);
         leftBackDrive.setPower(leftPower);
         rightBackDrive.setPower(rightPower);
+        lift_motor.setPower(liftPower);
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
