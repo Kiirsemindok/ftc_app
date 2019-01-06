@@ -1,0 +1,15 @@
+-= Eagles Robotics FTC Programming Changelog =-
+
+[1/4/2019]
+{v1.8a}
+
+ + Uploaded v1.8a /teamcode/ files under <master> branch
+
+{v1.8b}
+ + Added `lift_motor.setPower(liftPower);` on line 164 of <TestOpModeTele.java>
+ + Removed line 158 of <TestOpModeTele.java> : `liftPower = gamepad1.left_trigger;`
+[1/6/2019]
+{V.(T, A): (1.8c, 1.0b)}
+ + Added V.java for dynamic and easy version control.
+ + Split updates into two categories of versions: TeleOp version and Autonomous version.
+ + Added back wheel motors for the autonomous program.

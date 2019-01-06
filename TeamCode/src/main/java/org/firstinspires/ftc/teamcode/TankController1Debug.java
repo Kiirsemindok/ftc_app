@@ -30,6 +30,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import org.firstinspires.ftc.teamcode.V.version;
 
 @TeleOp(name="Tank Controller 1 Live Debug", group="DEBUG")
 //@Disabled
@@ -71,6 +72,8 @@ public class TankController1Debug extends OpMode
         telemetry.addData("DPad Bottom-Right Combo", (gamepad1.dpad_down && gamepad1.dpad_right));
         telemetry.addData("DPad Bottom-Left Combo", (gamepad1.dpad_down && gamepad1.dpad_left));
         telemetry.addData("DPad Top-Left Combo", (gamepad1.dpad_up && gamepad1.dpad_left));
+        telemetry.addData("Autonomous Version", version.aversion);
+        telemetry.addData("TeleOp Version", version.tversion);
     }
     @Override
     public void stop() {

@@ -35,6 +35,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+import org.firstinspires.ftc.teamcode.V.version;
 /**
  * This file contains an example of an iterative (Non-Linear) "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
@@ -165,7 +166,7 @@ public class TestOpModeTele extends OpMode
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
-        telemetry.addData("Version", "1.8a");
+        telemetry.addData("Version", version.tversion);
         telemetry.addData("Left Front Power", leftFrontDrive.getPower());
         telemetry.addData("Left Back Power", leftBackDrive.getPower());
         telemetry.addData("Right Front Power", rightFrontDrive.getPower());
