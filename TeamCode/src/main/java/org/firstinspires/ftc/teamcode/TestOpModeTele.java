@@ -53,6 +53,13 @@ import org.firstinspires.ftc.teamcode.V.version;
 //@Disabled
 public class TestOpModeTele extends OpMode
 {
+    public void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftFrontDrive = null;
@@ -182,14 +189,14 @@ public class TestOpModeTele extends OpMode
             intakeOn = 1;
         }
         // Send calculated power to wheels
-        leftPower  = gamepad1.left_stick_y ;
+        leftPower = gamepad1.left_stick_y;
         leftFrontDrive.setPower(-leftPower);
         leftBackDrive.setPower(leftPower);
         rightPower = gamepad1.right_stick_y;
         rightFrontDrive.setPower(rightPower);
         rightBackDrive.setPower(rightPower);
         if (gp2unlocked) {
-            leftPower  = gamepad2.left_stick_y ;
+            leftPower = gamepad2.left_stick_y;
             leftFrontDrive.setPower(-leftPower);
             leftBackDrive.setPower(leftPower);
             rightPower = gamepad2.right_stick_y;
@@ -219,38 +226,44 @@ public class TestOpModeTele extends OpMode
             hookPower = 0.25;
         } else if (gamepad1.dpad_down && gp1unlocked) {
             hookPower = -1;
-        } else if (gp1unlocked && !(gamepad2.dpad_down || gamepad2.dpad_up)){
+        } else if (gp1unlocked && !(gamepad2.dpad_down || gamepad2.dpad_up)) {
             hookPower = 0;
         }
         hook.setPower(hookPower);
 
-        if (gamepad2.right_bumper && (intakeOn == 0)) {
-            intakeOn = -1;
-        } else if (gamepad2.right_bumper && (intakeOn == -1)) {
-            intakeOn = 0;
-        } else if (gamepad2.left_bumper && (intakeOn == 1)) {
-            intakeOn = -1;
-        } else if (gamepad2.left_bumper && (intakeOn == -1)) {
-            intakeOn = 1;
-        } else if (gamepad2.left_bumper && (intakeOn == 1)) {
-            intakeOn = 0;
-        } else if (gamepad2.left_bumper && (intakeOn == 0)) {
-            intakeOn = 1;
+        while (gamepad2.right_bumper || gamepad2.left_bumper) {
+            sleep(500);
+            if (gamepad2.right_bumper && (intakeOn == 0)) {
+                intakeOn = -1;
+            } else if (gamepad2.right_bumper && (intakeOn == -1)) {
+                intakeOn = 0;
+            } else if (gamepad2.left_bumper && (intakeOn == 1)) {
+                intakeOn = -1;
+            } else if (gamepad2.left_bumper && (intakeOn == -1)) {
+                intakeOn = 1;
+            } else if (gamepad2.left_bumper && (intakeOn == 1)) {
+                intakeOn = 0;
+            } else if (gamepad2.left_bumper && (intakeOn == 0)) {
+                intakeOn = 1;
+            }
         }
         intake.setPower(intakeOn);
 
-        if (gamepad1.right_bumper && (intakeOn == 0) && gp1unlocked) {
-            intakeOn = -1;
-        } else if (gamepad1.right_bumper && (intakeOn == -1) && gp1unlocked) {
-            intakeOn = 0;
-        } else if (gamepad1.left_bumper && (intakeOn == 1) && gp1unlocked) {
-            intakeOn = -1;
-        } else if (gamepad1.left_bumper && (intakeOn == -1) && gp1unlocked) {
-            intakeOn = 1;
-        } else if (gamepad1.left_bumper && (intakeOn == 1) && gp1unlocked) {
-            intakeOn = 0;
-        } else if (gamepad1.left_bumper && (intakeOn == 0) && gp1unlocked) {
-            intakeOn = 1;
+        while ((gamepad1.right_bumper || gamepad1.left_bumper) && gp1unlocked) {
+            sleep(500);
+            if (gamepad1.right_bumper && (intakeOn == 0) && gp1unlocked) {
+                intakeOn = -1;
+            } else if (gamepad1.right_bumper && (intakeOn == -1) && gp1unlocked) {
+                intakeOn = 0;
+            } else if (gamepad1.left_bumper && (intakeOn == 1) && gp1unlocked) {
+                intakeOn = -1;
+            } else if (gamepad1.left_bumper && (intakeOn == -1) && gp1unlocked) {
+                intakeOn = 1;
+            } else if (gamepad1.left_bumper && (intakeOn == 1) && gp1unlocked) {
+                intakeOn = 0;
+            } else if (gamepad1.left_bumper && (intakeOn == 0) && gp1unlocked) {
+                intakeOn = 1;
+            }
         }
         intake.setPower(intakeOn);
         // Show the elapsed game time and wheel power.
