@@ -63,6 +63,7 @@ public class TestOpModeTele extends OpMode
     private Servo bucket = null;
     private DcMotor intake = null; //left_arm
     private DcMotor hook = null; //lift_arm
+    private double intakeOn = 0;
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -115,7 +116,6 @@ public class TestOpModeTele extends OpMode
         double leftPower;
         double rightPower;
         double liftPower;
-        double intakeOn = 0;
         double hookPower;
         // check to see if we need to move the servo.
         if (gamepad1.y) {
