@@ -31,3 +31,5 @@
  + Split main functionality between 2 controllers, the first doing the driving, the second doing other tasks
  + Added override/unlocked controller capabilities so one controller can do all tasks if necessary.
  + Fine tuned power settings, adjustments, and logic cases.
+{V.(T, A): (2.0b, 1.0b)}
+ + Added .5 second wait time for intake toggling.
