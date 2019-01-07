@@ -27,3 +27,7 @@
  ~ Changed controls of intake to left and right bumpers, out and in, respectively
  + Added lowering of lift motor with left trigger
  ~ Changed hook up to quarter power for stability
+{V.(T, A): (2.0a, 1.0b)}
+ + Split main functionality between 2 controllers, the first doing the driving, the second doing other tasks
+ + Added override/unlocked controller capabilities so one controller can do all tasks if necessary.
+ + Fine tuned power settings, adjustments, and logic cases.
