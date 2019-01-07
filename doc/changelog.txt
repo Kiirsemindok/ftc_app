@@ -23,3 +23,7 @@
  + Added intake based off of dpad_right input, toggle.
 {V.(T, A): (1.9b, 1.0b)}
  ~ Hotfixed the intake toggle bug
+{V.(T, A): (1.9c, 1.0b)}
+ ~ Changed controls of intake to left and right bumpers, out and in, respectively
+ + Added lowering of lift motor with left trigger
+ ~ Changed hook up to quarter power for stability
