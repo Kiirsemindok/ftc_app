@@ -64,6 +64,8 @@ public class TestOpModeTele extends OpMode
     private DcMotor intake = null; //left_arm
     private DcMotor hook = null; //lift_arm
     private double intakeOn = 0;
+    private boolean gp1unlocked = false;
+    private boolean gp2unlocked = false;
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -118,16 +120,41 @@ public class TestOpModeTele extends OpMode
         double liftPower;
         double hookPower;
         // check to see if we need to move the servo.
-        if (gamepad1.y) {
+        if (gamepad1.left_stick_button && gamepad1.right_stick_button && !gp1unlocked) {
+            gp1unlocked = true;
+        } else if (gamepad1.left_stick_button && gamepad1.right_stick_button && gp1unlocked) {
+            gp1unlocked = false;
+        }
+        if (gamepad2.left_stick_button && gamepad2.right_stick_button && !gp2unlocked) {
+            gp2unlocked = true;
+        } else if (gamepad2.left_stick_button && gamepad2.right_stick_button && gp2unlocked) {
+            gp2unlocked = false;
+        }
+
+        if (gamepad2.y) {
             //Move straight up
             bucket.setPosition(0.4);
-        } else if (gamepad1.a) {
+        } else if (gamepad2.a) {
             //Move to 90 degrees
             bucket.setPosition(0.5);
-        } else if (gamepad1.b) {
+        } else if (gamepad2.b) {
             //Move to 180 degrees.
             bucket.setPosition(1);
-        } else if (gamepad1.x) {
+        } else if (gamepad2.x) {
+            //Move to 0 degrees
+            bucket.setPosition(0);
+        }
+
+        if (gamepad1.y && gp1unlocked) {
+            //Move straight up
+            bucket.setPosition(0.4);
+        } else if (gamepad1.a && gp1unlocked) {
+            //Move to 90 degrees
+            bucket.setPosition(0.5);
+        } else if (gamepad1.b && gp1unlocked) {
+            //Move to 180 degrees.
+            bucket.setPosition(1);
+        } else if (gamepad1.x && gp1unlocked) {
             //Move to 0 degrees
             bucket.setPosition(0);
         }
@@ -141,43 +168,97 @@ public class TestOpModeTele extends OpMode
         // rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
         // Tank Mode uses one stick to control each wheel.
         // - This requires no math, but it is hard to drive forward slowly and keep straight.
-        leftPower  = gamepad1.left_stick_y ;
-        rightPower = gamepad1.right_stick_y;
-        liftPower = gamepad1.right_trigger / 2;
-        if (gamepad1.dpad_up) {
-            hookPower = 0.25;
-        } else if (gamepad1.dpad_down) {
-            hookPower = -1;
-        } else {
-            hookPower = 0;
-        }
-        if (gamepad1.right_bumper && (intakeOn == 0)) {
+        if (gamepad2.right_bumper && (intakeOn == 0)) {
             intakeOn = -1;
-        } else if (gamepad1.right_bumper && (intakeOn == -1)) {
+        } else if (gamepad2.right_bumper && (intakeOn == -1)) {
             intakeOn = 0;
-        } else if (gamepad1.left_bumper && (intakeOn == 1)) {
+        } else if (gamepad2.left_bumper && (intakeOn == 1)) {
             intakeOn = -1;
-        } else if (gamepad1.left_bumper && (intakeOn == -1)) {
+        } else if (gamepad2.left_bumper && (intakeOn == -1)) {
             intakeOn = 1;
-        } else if (gamepad1.left_bumper && (intakeOn == 1)) {
+        } else if (gamepad2.left_bumper && (intakeOn == 1)) {
             intakeOn = 0;
-        } else if (gamepad1.left_bumper && (intakeOn == 0)) {
+        } else if (gamepad2.left_bumper && (intakeOn == 0)) {
             intakeOn = 1;
         }
         // Send calculated power to wheels
+        leftPower  = gamepad1.left_stick_y ;
         leftFrontDrive.setPower(-leftPower);
-        rightFrontDrive.setPower(rightPower);
         leftBackDrive.setPower(leftPower);
+        rightPower = gamepad1.right_stick_y;
+        rightFrontDrive.setPower(rightPower);
         rightBackDrive.setPower(rightPower);
+        if (gp2unlocked) {
+            leftPower  = gamepad2.left_stick_y ;
+            leftFrontDrive.setPower(-leftPower);
+            leftBackDrive.setPower(leftPower);
+            rightPower = gamepad2.right_stick_y;
+            rightFrontDrive.setPower(rightPower);
+            rightBackDrive.setPower(rightPower);
+        }
+        liftPower = gamepad2.right_trigger;
         lift_motor.setPower(liftPower);
-        liftPower = -gamepad1.left_trigger / 2;
+        liftPower = -gamepad2.left_trigger;
         lift_motor.setPower(liftPower);
+        if (gp1unlocked) {
+            liftPower = gamepad2.right_trigger;
+            lift_motor.setPower(liftPower);
+            liftPower = -gamepad2.left_trigger;
+            lift_motor.setPower(liftPower);
+        }
+
+        if (gamepad2.dpad_up) {
+            hookPower = 0.25;
+        } else if (gamepad2.dpad_down) {
+            hookPower = -1;
+        } else if (!gp1unlocked && (gamepad2.dpad_down || gamepad2.dpad_up)) {
+            hookPower = 0;
+        }
         hook.setPower(hookPower);
+        if (gamepad1.dpad_up && gp1unlocked) {
+            hookPower = 0.25;
+        } else if (gamepad1.dpad_down && gp1unlocked) {
+            hookPower = -1;
+        } else if (gp1unlocked && !(gamepad2.dpad_down || gamepad2.dpad_up)){
+            hookPower = 0;
+        }
+        hook.setPower(hookPower);
+
+        if (gamepad2.right_bumper && (intakeOn == 0)) {
+            intakeOn = -1;
+        } else if (gamepad2.right_bumper && (intakeOn == -1)) {
+            intakeOn = 0;
+        } else if (gamepad2.left_bumper && (intakeOn == 1)) {
+            intakeOn = -1;
+        } else if (gamepad2.left_bumper && (intakeOn == -1)) {
+            intakeOn = 1;
+        } else if (gamepad2.left_bumper && (intakeOn == 1)) {
+            intakeOn = 0;
+        } else if (gamepad2.left_bumper && (intakeOn == 0)) {
+            intakeOn = 1;
+        }
+        intake.setPower(intakeOn);
+
+        if (gamepad1.right_bumper && (intakeOn == 0) && gp1unlocked) {
+            intakeOn = -1;
+        } else if (gamepad1.right_bumper && (intakeOn == -1) && gp1unlocked) {
+            intakeOn = 0;
+        } else if (gamepad1.left_bumper && (intakeOn == 1) && gp1unlocked) {
+            intakeOn = -1;
+        } else if (gamepad1.left_bumper && (intakeOn == -1) && gp1unlocked) {
+            intakeOn = 1;
+        } else if (gamepad1.left_bumper && (intakeOn == 1) && gp1unlocked) {
+            intakeOn = 0;
+        } else if (gamepad1.left_bumper && (intakeOn == 0) && gp1unlocked) {
+            intakeOn = 1;
+        }
         intake.setPower(intakeOn);
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
         telemetry.addData("Version", version.tversion);
+        telemetry.addData("Controller 1 Unlocked", gp1unlocked);
+        telemetry.addData("Controller 2 Unlocked", gp2unlocked);
         telemetry.addData("Left Front Power", leftFrontDrive.getPower());
         telemetry.addData("Left Back Power", leftBackDrive.getPower());
         telemetry.addData("Right Front Power", rightFrontDrive.getPower());
