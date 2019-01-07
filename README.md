@@ -1,3 +1,9 @@
+## Eagles Robotics Preface
+This is the repo used by the Eagles Robotics FTC team that contains all of our source code for our robot.
+The version style we use is broken up into 2 versions: The TeleOp version and the Autonomous version.
+This is just a preface to the repo and to avoid confusion on different version styles and sources.
+Nothing below is written by Eagles Robotics and is written by FTCtechNH.
+
 ## Welcome!
 This GitHub repository contains the source code that is used to build an Android app to control a *FIRST* Tech Challenge competition robot.  To use this SDK, download/clone the entire project to your local computer.
 
