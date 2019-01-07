@@ -143,24 +143,34 @@ public class TestOpModeTele extends OpMode
         // - This requires no math, but it is hard to drive forward slowly and keep straight.
         leftPower  = gamepad1.left_stick_y ;
         rightPower = gamepad1.right_stick_y;
-        liftPower = gamepad1.right_trigger;
+        liftPower = gamepad1.right_trigger / 2;
         if (gamepad1.dpad_up) {
-            hookPower = 1;
+            hookPower = 0.25;
         } else if (gamepad1.dpad_down) {
             hookPower = -1;
         } else {
             hookPower = 0;
         }
-        if (gamepad1.dpad_right && (intakeOn == 0)) {
-            intakeOn = 1;
-        } else if (gamepad1.dpad_right && (intakeOn == 1)) {
+        if (gamepad1.right_bumper && (intakeOn == 0)) {
+            intakeOn = -1;
+        } else if (gamepad1.right_bumper && (intakeOn == -1)) {
             intakeOn = 0;
+        } else if (gamepad1.left_bumper && (intakeOn == 1)) {
+            intakeOn = -1;
+        } else if (gamepad1.left_bumper && (intakeOn == -1)) {
+            intakeOn = 1;
+        } else if (gamepad1.left_bumper && (intakeOn == 1)) {
+            intakeOn = 0;
+        } else if (gamepad1.left_bumper && (intakeOn == 0)) {
+            intakeOn = 1;
         }
         // Send calculated power to wheels
         leftFrontDrive.setPower(-leftPower);
         rightFrontDrive.setPower(rightPower);
         leftBackDrive.setPower(leftPower);
         rightBackDrive.setPower(rightPower);
+        lift_motor.setPower(liftPower);
+        liftPower = -gamepad1.left_trigger / 2;
         lift_motor.setPower(liftPower);
         hook.setPower(hookPower);
         intake.setPower(intakeOn);
