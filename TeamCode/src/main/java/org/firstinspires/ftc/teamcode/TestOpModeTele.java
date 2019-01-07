@@ -60,9 +60,9 @@ public class TestOpModeTele extends OpMode
     private DcMotor leftBackDrive = null;
     private DcMotor rightBackDrive = null;
     private DcMotor lift_motor = null;
-    private Servo left_hand = null;
-    private Servo right_hand = null;
     private Servo bucket = null;
+    private DcMotor intake = null; //left_arm
+    private DcMotor hook = null; //lift_arm
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -76,10 +76,10 @@ public class TestOpModeTele extends OpMode
         rightFrontDrive = hardwareMap.get(DcMotor.class, "right_drive"); // Motor 0
         leftFrontDrive = hardwareMap.get(DcMotor.class, "left_drive"); // Motor 1
         rightBackDrive = hardwareMap.get(DcMotor.class, "right_drive_back"); // Motor 3
-        left_hand = hardwareMap.get(Servo.class, "left_hand"); // Servo 1
         bucket = hardwareMap.get(Servo.class, "bucket"); // Servo 2
-        right_hand = hardwareMap.get(Servo.class, "right_hand");
-        lift_motor = hardwareMap.get(DcMotor.class, "lift_motor"); //Motor 1???
+        lift_motor = hardwareMap.get(DcMotor.class, "lift_motor"); //Motor 0
+        intake = hardwareMap.get(DcMotor.class, "left_arm"); //Motor 1
+        hook = hardwareMap.get(DcMotor.class, "lift_arm"); //Motor 2
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -87,9 +87,11 @@ public class TestOpModeTele extends OpMode
         leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
         lift_motor.setDirection(DcMotor.Direction.REVERSE);
+        intake.setDirection(DcMotor.Direction.REVERSE);
+        hook.setDirection(DcMotor.Direction.REVERSE);
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
-        telemetry.addData("Version", "1.8a");
+        telemetry.addData("Version", version.tversion);
     }
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
@@ -113,24 +115,9 @@ public class TestOpModeTele extends OpMode
         double leftPower;
         double rightPower;
         double liftPower;
+        double intakeOn = 0;
+        double hookPower;
         // check to see if we need to move the servo.
-        if(gamepad1.dpad_up) {
-            // Move straight up
-            left_hand.setPosition(0.4);
-            right_hand.setPosition(0.5);
-        } else if (gamepad1.dpad_down) {
-            // move to 90 degrees
-            left_hand.setPosition(.5);
-            right_hand.setPosition(0.4);
-        } else if (gamepad1.dpad_right) {
-            // move to 180 degrees.
-            left_hand.setPosition(1);
-            right_hand.setPosition(0);
-        } else if (gamepad1.dpad_left) {
-            //Move to 0 degrees
-            left_hand.setPosition(0);
-            right_hand.setPosition(1);
-        }
         if (gamepad1.y) {
             //Move straight up
             bucket.setPosition(0.4);
@@ -157,12 +144,26 @@ public class TestOpModeTele extends OpMode
         leftPower  = gamepad1.left_stick_y ;
         rightPower = gamepad1.right_stick_y;
         liftPower = gamepad1.right_trigger;
+        if (gamepad1.dpad_up) {
+            hookPower = 1;
+        } else if (gamepad1.dpad_down) {
+            hookPower = -1;
+        } else {
+            hookPower = 0;
+        }
+        if (gamepad1.dpad_right && (intakeOn == 0)) {
+            intakeOn = 1;
+        } else if (gamepad1.dpad_right && (intakeOn == 1)) {
+            intakeOn = 0;
+        }
         // Send calculated power to wheels
         leftFrontDrive.setPower(-leftPower);
         rightFrontDrive.setPower(rightPower);
         leftBackDrive.setPower(leftPower);
         rightBackDrive.setPower(rightPower);
         lift_motor.setPower(liftPower);
+        hook.setPower(hookPower);
+        intake.setPower(intakeOn);
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
@@ -172,9 +173,9 @@ public class TestOpModeTele extends OpMode
         telemetry.addData("Right Front Power", rightFrontDrive.getPower());
         telemetry.addData("Right Back Power", rightBackDrive.getPower());
         telemetry.addData("Lift Motor Power", lift_motor.getPower());
-        telemetry.addData("Left Servo Position", left_hand.getPosition());
-        telemetry.addData("Right Servo Position", right_hand.getPosition());
         telemetry.addData("Bucket Servo Position", bucket.getPosition());
+        telemetry.addData("Hook Power", hook.getPower());
+        telemetry.addData("Intake Power", intake.getPower());
         telemetry.addData("Status", "Running");
         telemetry.update();
     }

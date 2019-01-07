@@ -6,7 +6,7 @@ public final class V {
     public static final class version {
         private version() {}
 
-        public static String aversion = "A.1.0b"; //Autonomous Version
-        public static String tversion = "T.1.8c"; //TeleOp Version
+        public static String aversion = "A.1.0c"; //Autonomous Version
+        public static String tversion = "T.1.9a"; //TeleOp Version
     }
 }
