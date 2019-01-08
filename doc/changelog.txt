@@ -33,3 +33,5 @@
  + Fine tuned power settings, adjustments, and logic cases.
 {V.(T, A): (2.0b, 1.0b)}
  + Added .5 second wait time for intake toggling.
+{V.(T, A): (2.0c, 1.0b)}
+ + Fixed error in compiling dealing with <hookPower>
