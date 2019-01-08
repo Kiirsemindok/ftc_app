@@ -71,6 +71,7 @@ public class TestOpModeTele extends OpMode
     private DcMotor intake = null; //left_arm
     private DcMotor hook = null; //lift_arm
     private double intakeOn = 0;
+    private double hookPower = 0;
     private boolean gp1unlocked = false;
     private boolean gp2unlocked = false;
     /*
@@ -125,7 +126,6 @@ public class TestOpModeTele extends OpMode
         double leftPower;
         double rightPower;
         double liftPower;
-        double hookPower;
         // check to see if we need to move the servo.
         if (gamepad1.left_stick_button && gamepad1.right_stick_button && !gp1unlocked) {
             gp1unlocked = true;
