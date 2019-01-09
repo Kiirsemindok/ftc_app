@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-
+// DO NOT EDIT ANYTHING BUT THE STRING IN THE QUOTES OF THE VARIABLES
 public final class V {
     private V() {}
 
