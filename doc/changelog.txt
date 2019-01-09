@@ -16,22 +16,22 @@
  + Reversed the Pushbot motors to make our robot go the ***right direction***
 
 [1/7/2019]
-{V.(T, A): (1.9a, 1.0b)}
+{V.(T, A): (1.9a, 1.0c)}
  + Added hook and intake motors (left_arm, lift_arm)
  - Removed left_hand and right_hand servos due to design changes
  + Added hook based off of dpad_up and dpad_down, dynamic.
  + Added intake based off of dpad_right input, toggle.
-{V.(T, A): (1.9b, 1.0b)}
+{V.(T, A): (1.9b, 1.0c)}
  ~ Hotfixed the intake toggle bug
-{V.(T, A): (1.9c, 1.0b)}
+{V.(T, A): (1.9c, 1.0c)}
  ~ Changed controls of intake to left and right bumpers, out and in, respectively
  + Added lowering of lift motor with left trigger
  ~ Changed hook up to quarter power for stability
-{V.(T, A): (2.0a, 1.0b)}
+{V.(T, A): (2.0a, 1.0c)}
  + Split main functionality between 2 controllers, the first doing the driving, the second doing other tasks
  + Added override/unlocked controller capabilities so one controller can do all tasks if necessary.
- + Fine tuned power settings, adjustments, and logic cases.
-{V.(T, A): (2.0b, 1.0b)}
+ ~ Fine tuned power settings, adjustments, and logic cases.
+{V.(T, A): (2.0b, 1.0c)}
  + Added .5 second wait time for intake toggling.
-{V.(T, A): (2.0c, 1.0b)}
- + Fixed error in compiling dealing with <hookPower>
+{V.(T, A): (2.0c, 1.0c)}
+ ~ Fixed error in compiling dealing with <hookPower>
