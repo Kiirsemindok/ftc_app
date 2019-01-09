@@ -2,6 +2,8 @@
 This is the repo used by the Eagles Robotics FTC team that contains all of our source code for our robot.
 The version style we use is broken up into 2 versions: The TeleOp version and the Autonomous version.
 This is just a preface to the repo and to avoid confusion on different version styles and sources.
+For more info on the history of this repo, check the changelog under the /doc/ folder.
+If you have questions feel free to contact the lead programmer on the team.
 Nothing below is written by Eagles Robotics and is written by FTCtechNH.
 
 ## Welcome!
