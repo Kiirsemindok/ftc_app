@@ -72,6 +72,7 @@ public class TankController2Debug extends OpMode
         telemetry.addData("DPad Bottom-Right Combo", (gamepad2.dpad_down && gamepad2.dpad_right));
         telemetry.addData("DPad Bottom-Left Combo", (gamepad2.dpad_down && gamepad2.dpad_left));
         telemetry.addData("DPad Top-Left Combo", (gamepad2.dpad_up && gamepad2.dpad_left));
+        telemetry.addData("Unlock Sequence", (gamepad2.left_stick_button && gamepad2.right_stick_button));
         telemetry.addData("Autonomous Version", version.aversion);
         telemetry.addData("TeleOp Version", version.tversion);
     }

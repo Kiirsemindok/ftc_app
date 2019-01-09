@@ -72,6 +72,7 @@ public class POVController1Debug extends OpMode
         telemetry.addData("DPad Bottom-Right Combo", (gamepad1.dpad_down && gamepad1.dpad_right));
         telemetry.addData("DPad Bottom-Left Combo", (gamepad1.dpad_down && gamepad1.dpad_left));
         telemetry.addData("DPad Top-Left Combo", (gamepad1.dpad_up && gamepad1.dpad_left));
+        telemetry.addData("Unlock Sequence", (gamepad1.left_stick_button && gamepad1.right_stick_button));
         telemetry.addData("Autonomous Version", version.aversion);
         telemetry.addData("TeleOp Version", version.tversion);
     }
