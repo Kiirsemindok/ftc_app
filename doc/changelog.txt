@@ -35,3 +35,8 @@
  + Added .5 second wait time for intake toggling.
 {V.(T, A): (2.0c, 1.0c)}
  ~ Fixed error in compiling dealing with <hookPower>
+
+[1/14/19]
+{V.(T, A): (2.0d, 1.0c)}
+ ~ Fixed the toggle glitch with the hook.
+ ~ Changed power to full both ways with the hook.
