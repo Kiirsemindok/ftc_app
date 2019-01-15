@@ -215,18 +215,18 @@ public class TestOpModeTele extends OpMode
         }
 
         if (gamepad2.dpad_up) {
-            hookPower = 0.25;
+            hookPower = 1;
         } else if (gamepad2.dpad_down) {
             hookPower = -1;
-        } else if (!gp1unlocked && (gamepad2.dpad_down || gamepad2.dpad_up)) {
+        } else {
             hookPower = 0;
         }
         hook.setPower(hookPower);
         if (gamepad1.dpad_up && gp1unlocked) {
-            hookPower = 0.25;
+            hookPower = 1;
         } else if (gamepad1.dpad_down && gp1unlocked) {
             hookPower = -1;
-        } else if (gp1unlocked && !(gamepad2.dpad_down || gamepad2.dpad_up)) {
+        } else {
             hookPower = 0;
         }
         hook.setPower(hookPower);
