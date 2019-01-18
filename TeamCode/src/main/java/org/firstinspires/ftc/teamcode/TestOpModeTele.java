@@ -175,19 +175,6 @@ public class TestOpModeTele extends OpMode
         // rightPower   = Range.clip(drive - turn, -1.0, 1.0);
         // Tank Mode uses one stick to control each wheel.
         // - This requires no math, but it is hard to drive forward slowly and keep straight.
-        if (gamepad2.right_bumper && (intakeOn == 0)) {
-            intakeOn = -1;
-        } else if (gamepad2.right_bumper && (intakeOn == -1)) {
-            intakeOn = 0;
-        } else if (gamepad2.left_bumper && (intakeOn == 1)) {
-            intakeOn = -1;
-        } else if (gamepad2.left_bumper && (intakeOn == -1)) {
-            intakeOn = 1;
-        } else if (gamepad2.left_bumper && (intakeOn == 1)) {
-            intakeOn = 0;
-        } else if (gamepad2.left_bumper && (intakeOn == 0)) {
-            intakeOn = 1;
-        }
         // Send calculated power to wheels
         leftPower = gamepad1.left_stick_y;
         leftFrontDrive.setPower(-leftPower);
@@ -231,41 +218,24 @@ public class TestOpModeTele extends OpMode
         }
         hook.setPower(hookPower);
 
-        while (gamepad2.right_bumper || gamepad2.left_bumper) {
-            sleep(500);
-            if (gamepad2.right_bumper && (intakeOn == 0)) {
-                intakeOn = -1;
-            } else if (gamepad2.right_bumper && (intakeOn == -1)) {
-                intakeOn = 0;
-            } else if (gamepad2.left_bumper && (intakeOn == 1)) {
-                intakeOn = -1;
-            } else if (gamepad2.left_bumper && (intakeOn == -1)) {
-                intakeOn = 1;
-            } else if (gamepad2.left_bumper && (intakeOn == 1)) {
-                intakeOn = 0;
-            } else if (gamepad2.left_bumper && (intakeOn == 0)) {
-                intakeOn = 1;
-            }
+        if (gamepad2.right_bumper) {
+            intakeOn = -1;
+        } else if (gamepad2.left_bumper) {
+            intakeOn = 1;
+        } else {
+            intakeOn = 0;
         }
         intake.setPower(intakeOn);
 
-        while ((gamepad1.right_bumper || gamepad1.left_bumper) && gp1unlocked) {
-            sleep(500);
-            if (gamepad1.right_bumper && (intakeOn == 0) && gp1unlocked) {
-                intakeOn = -1;
-            } else if (gamepad1.right_bumper && (intakeOn == -1) && gp1unlocked) {
-                intakeOn = 0;
-            } else if (gamepad1.left_bumper && (intakeOn == 1) && gp1unlocked) {
-                intakeOn = -1;
-            } else if (gamepad1.left_bumper && (intakeOn == -1) && gp1unlocked) {
-                intakeOn = 1;
-            } else if (gamepad1.left_bumper && (intakeOn == 1) && gp1unlocked) {
-                intakeOn = 0;
-            } else if (gamepad1.left_bumper && (intakeOn == 0) && gp1unlocked) {
-                intakeOn = 1;
-            }
+        if (gamepad1.right_bumper && gp1unlocked) {
+            intakeOn = -1;
+        } else if (gamepad1.left_bumper && gp1unlocked) {
+            intakeOn = 1;
+        } else if (gp1unlocked && !(gamepad2.left_bumper || gamepad2.right_bumper)) {
+            intakeOn = 0;
         }
         intake.setPower(intakeOn);
+
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
