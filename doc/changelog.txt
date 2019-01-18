@@ -40,3 +40,12 @@
 {V.(T, A): (2.0d, 1.0c)}
  ~ Fixed the toggle glitch with the hook.
  ~ Changed power to full both ways with the hook.
+
+[1/18/19]
+{V.(T, A): (2.1a, 1.0c)}
+ ~ Changed intake controls to be a on-demand function, rather than a toggle.
+ - Removed old intake code.
+{V.(T, A): (2.1b, 1.0c)}
+ ~ Changed the lift motor code to fix a bug in which it wouldn't respond
+{V.(T, A): (2.1c, 1.0c)}
+ ~ Second attempt at fixing the bug of the lift motor not working correctly
