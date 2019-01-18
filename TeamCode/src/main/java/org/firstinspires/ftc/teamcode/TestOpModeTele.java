@@ -190,14 +190,17 @@ public class TestOpModeTele extends OpMode
             rightFrontDrive.setPower(rightPower);
             rightBackDrive.setPower(rightPower);
         }
+
         liftPower = gamepad2.right_trigger;
         lift_motor.setPower(liftPower);
+        if (gp1unlocked && (gamepad1.right_trigger != 0)) {
+            liftPower = gamepad1.right_trigger;
+            lift_motor.setPower(liftPower);
+        }
         liftPower = -gamepad2.left_trigger;
         lift_motor.setPower(liftPower);
-        if (gp1unlocked) {
-            liftPower = gamepad2.right_trigger;
-            lift_motor.setPower(liftPower);
-            liftPower = -gamepad2.left_trigger;
+        if (gp1unlocked && (gamepad1.left_trigger != 0)) {
+            liftPower = -gamepad1.left_trigger;
             lift_motor.setPower(liftPower);
         }
 
