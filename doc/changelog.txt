@@ -49,3 +49,11 @@
  ~ Changed the lift motor code to fix a bug in which it wouldn't respond
 {V.(T, A): (2.1c, 1.0c)}
  ~ Second attempt at fixing the bug of the lift motor not working correctly
+
+[1/21/19]
+{V.(T, A): (2.1c, 1.1a)}
+ + Created another Autonomous OpMode
+ + Added support for the 3 additional motors of manipulation functions of the robot: lift, intake, and hook
+ + Added support for the bucket servo
+ + Added functions to easily automate fixed functions such as extending or retracting the hook and lift.
+ ~ Commented out error-causing statements in external samples from redefining the Autonomous parent class.
