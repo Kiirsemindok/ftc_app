@@ -64,3 +64,5 @@
  > Both are empty models with functions for each motor.
 {V.(T, A): (2.1c, 1.2a)}
  + Added movement and enabled the Depot-side Autonomous OpMode
+{V.(T, A): (2.1c, 1.2b)}
+ ~ Fixed pre-emptive problem of the hook getting stuck upon moving forward, getting caught via the hook.
