@@ -66,7 +66,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  */
 
 @Autonomous(name="Depot Side Autonomous", group="Pushbot")
-@Disabled
+//@Disabled
 public class AutonomousDepotSide extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -132,7 +132,8 @@ public class AutonomousDepotSide extends LinearOpMode {
         robot.leftClaw.setPosition(1.0);            // S5: Stop and close the claw.
         robot.rightClaw.setPosition(0.0);
         */
-        //Movement Here
+        hookUp();
+        encoderDrive(DRIVE_SPEED, 5, 5, 10);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
