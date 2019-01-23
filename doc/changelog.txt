@@ -57,3 +57,8 @@
  + Added support for the bucket servo
  + Added functions to easily automate fixed functions such as extending or retracting the hook and lift.
  ~ Commented out error-causing statements in external samples from redefining the Autonomous parent class.
+
+[1/23/19]
+{V.(T, A): (2.1c, 1.1b)}
+ + Created 2 Disabled Autonomous OpMode models for Crater-side and Depot-side functions
+ > Both are empty models with functions for each motor.
