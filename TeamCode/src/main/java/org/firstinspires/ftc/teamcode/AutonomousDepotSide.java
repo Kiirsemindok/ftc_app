@@ -133,6 +133,7 @@ public class AutonomousDepotSide extends LinearOpMode {
         robot.rightClaw.setPosition(0.0);
         */
         hookUp();
+        encoderDrive(DRIVE_SPEED, 1, -1, 1);
         encoderDrive(DRIVE_SPEED, 5, 5, 10);
 
         telemetry.addData("Path", "Complete");
