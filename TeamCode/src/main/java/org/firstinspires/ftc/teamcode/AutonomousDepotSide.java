@@ -65,9 +65,9 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Range of Motion Test: Full", group="Pushbot")
-//@Disabled
-public class AutonomousModel extends LinearOpMode {
+@Autonomous(name="Depot Side Autonomous", group="Pushbot")
+@Disabled
+public class AutonomousDepotSide extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwarePushbot         robot   = new HardwarePushbot();   // Use a Pushbot's hardware
@@ -132,27 +132,7 @@ public class AutonomousModel extends LinearOpMode {
         robot.leftClaw.setPosition(1.0);            // S5: Stop and close the claw.
         robot.rightClaw.setPosition(0.0);
         */
-        movement(); //Basic movement function to test all ranges of motion
-        sleep(5000);
-        movement(); // Repeat
-        sleep(1000);     // pause for servos to move
-        hookUp();
-        sleep(5000);
-        hookDown();
-        sleep(1000);
-        intakeOn(2);
-        sleep(5000);
-        liftUp();
-        sleep(1000);
-        liftDown();
-        sleep(5000);
-        bucketMove(0);
-        sleep(2500);
-        bucketMove(0.45);
-        sleep(2500);
-        bucketMove(0.5);
-        sleep(2500);
-        bucketMove(1);
+        //Movement Here
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
