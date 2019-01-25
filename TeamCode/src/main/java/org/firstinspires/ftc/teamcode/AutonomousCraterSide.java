@@ -65,7 +65,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Crater Side Autonomous", group="Pushbot")
+@Autonomous(name="LEGACY Crater Side Autonomous", group="Pushbot")
 @Disabled
 public class AutonomousCraterSide extends LinearOpMode {
 
@@ -132,7 +132,11 @@ public class AutonomousCraterSide extends LinearOpMode {
         robot.leftClaw.setPosition(1.0);            // S5: Stop and close the claw.
         robot.rightClaw.setPosition(0.0);
         */
-        //Movement Here
+        hookUp();
+        encoderDrive(DRIVE_SPEED, 5, -5, 5);
+        encoderDrive(DRIVE_SPEED, 5, 5, 5);
+        encoderDrive(DRIVE_SPEED, -5, 5, 5);
+        encoderDrive(DRIVE_SPEED, 10, 10, 10);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
@@ -269,10 +273,10 @@ public class AutonomousCraterSide extends LinearOpMode {
         }
     }
     public void hookUp() {
-        hookDrive(DRIVE_SPEED, 5, 5.0);
+        hookDrive(DRIVE_SPEED, 3.75, 3.75);
     }
     public void hookDown() {
-        hookDrive(DRIVE_SPEED, -5, 7.5);
+        hookDrive(DRIVE_SPEED, -3.75, 4.5);
     }
     public void intakeOn(double durationS) {
         intakeDrive(DRIVE_SPEED, 5000, durationS);

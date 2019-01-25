@@ -65,9 +65,9 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="LEGACY Depot Side Autonomous", group="Pushbot")
-@Disabled
-public class AutonomousDepotSide extends LinearOpMode {
+@Autonomous(name="Crater Side: Crater to Crater", group="Pushbot")
+//@Disabled
+public class ATrueCraterSide extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwarePushbot         robot   = new HardwarePushbot();   // Use a Pushbot's hardware
