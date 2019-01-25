@@ -66,3 +66,11 @@
  + Added movement and enabled the Depot-side Autonomous OpMode
 {V.(T, A): (2.1c, 1.2b)}
  ~ Fixed pre-emptive problem of the hook getting stuck upon moving forward, getting caught via the hook.
+
+[1/24/19]
+{V.(T, A): (2.1c, 1.3a)}
+ + Enabled Craterside autonomous program
+ ~ Fixed values for autonomous programs
+{V.(T, A): (2.1c, 1.4a)}
+ + Created and enabled new files for correct Crater and Depot side autonomous programs
+ > Tested and confirmed autonomous programs
